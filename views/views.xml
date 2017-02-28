@@ -138,5 +138,9 @@
         <menuitem name="Listado de Siths" id="examen_list_siths" parent="examen_menu_siths"
         action="siths_list_action"/>
 
+        <menuitem name="Planetas" id="examen_menu_planetas" parent="examen_menu_root"/>
+        <menuitem name="Listado de Planetas" id="examen_list_planetas" parent="examen_menu_planetas"
+        action="planetas_list_action"/>
+
     </data>
 </openerp>
