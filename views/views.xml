@@ -3,7 +3,7 @@
     <data>
          <record model="ir.actions.act_window" id="especies_list_action">
             <field name="name">Especies</field>
-            <field name="res_model">starWars.especie</field>
+            <field name="res_model">examen.especie</field>
             <field name="view_type">form</field>
             <field name="type">ir.actions.act_window</field>
             <field name="view_mode">tree,form</field>
@@ -11,50 +11,132 @@
 
         <record model="ir.ui.view" id="especie_form_view">
             <field name="name">especie.form</field>
-            <field name="model">starWars.especie</field>
+            <field name="model">examen.especie</field>
             <field name="arch" type="xml">
                 <form string="Formulario de especies">
                     <sheet>
                         <group>
                             <field name="name"/>
                             <field name="servivo_id"/>
+                            <field name="sith_id"/>
                         </group>
                     </sheet>
                 </form>
             </field>
         </record>
 
-        <record model="ir.actions.act_window" id="seresvivos_list_action">
-            <field name="name">Seres Vivos</field>
-            <field name="res_model">starWars.servivo</field>
+        <record model="ir.ui.view" id="siths_tree_view">
+            <field name="name">especie.tree</field>
+            <field name="model">examen.especie</field>
+            <field name="arch" type="xml">
+                <tree string="Listado de sith">
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+         <record model="ir.actions.act_window" id="siths_list_action">
+            <field name="name">Sith</field>
+            <field name="res_model">examen.sith</field>
             <field name="view_type">form</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form</field>  
         </record>
 
-        <record model="ir.ui.view" id="servivo_form_view">
-            <field name="name">servivo.form</field>
-            <field name="model">starWars.servivo</field>
+        <record model="ir.ui.view" id="sith_form_view">
+            <field name="name">sith.form</field>
+            <field name="model">examen.sith</field>
             <field name="arch" type="xml">
-                <form string="Formulario de seres vivos">
+                <form string="Formulario de siths">
                     <sheet>
                         <group>
-                            <field name="name"/>
+                            <field name="name" />
                             <field name="especie_id"/>
+                            <field name="rabia"/>
+                            <field name="afinidadOscuridad"/>
+                            <field name="numeroSables"/>
+                            <field name="colorSable"/>
                         </group>
                     </sheet>
                 </form>
             </field>
         </record>
 
-        <menuitem name="Jedis" id="starWars_menu_root"/>
+        <record model="ir.ui.view" id="siths_tree_view">
+            <field name="name">siths.tree</field>
+            <field name="model">examen.sith</field>
+            <field name="arch" type="xml">
+                <tree string="Listado de sith">
+                    <field name="name" />
+                    <field name="especie_id"/>
+                    <field name="rabia"/>
+                    <field name="numeroSables"/>
+                    <field name="afinidadOscuridad"/>
+                    <field name="colorSable"/>
+                </tree>
+            </field>
+        </record>
 
-        <menuitem name="Especies" id="starWars_menu_especies" parent="starWars_menu_root"/>
-        <menuitem name="Listado de especies" id="starWars_ist_especies" parent="starWars_menu_especies"
+        <record model="ir.actions.act_window" id="planetas_list_action">
+            <field name="name">Planeta</field>
+            <field name="res_model">examen.planeta</field>
+            <field name="view_type">form</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form,calendar</field>  
+        </record>
+
+        <record model="ir.ui.view" id="session_calendar_view">
+            <field name="name">planeta.calendar</field>
+            <field name="model">examen.planeta</field>
+            <field name="arch" type="xml">
+                <calendar string="Fecha en la que fue destruido" date_start="destruidoDate"
+                color="destruidoDate">
+                    <field name="name"/>
+                </calendar>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="planeta_form_view">
+            <field name="name">planeta.form</field>
+            <field name="model">examen.planeta</field>
+            <field name="arch" type="xml">
+                <form string="Formulario de planetas">
+                    <sheet>
+                        <group>
+                            <field name="name" />
+                            <field name="distancia"/>
+                            <field name="destruido"/>
+                            <field name="destruidoDate"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="planetas_tree_view">
+            <field name="name">planetas.tree</field>
+            <field name="model">examen.planeta</field>
+            <field name="arch" type="xml">
+                <tree string="Listado de planetas">
+                    <field name="name" />
+                    <field name="distancia"/>
+                    <field name="destruido"/>
+                    <field name="destruidoDate"/>
+                </tree>
+            </field>
+        </record>
+
+        
+
+        <menuitem name="Jedis" id="examen_menu_root"/>
+
+        <menuitem name="Especies" id="examen_menu_especies" parent="examen_menu_root"/>
+        <menuitem name="Listado de especies" id="examen_list_especies" parent="examen_menu_especies"
         action="especies_list_action"/>
 
-        <menuitem name="Seres Vivos" id="starWars_menu_seresvivos" parent="starWars_menu_root"/>
-        <menuitem name="Listado de seres vivos" id="starWars_list_seresvivos" parent="starWars_menu_seresvivos"
-        action="seresvivos_list_action"/>
+        <menuitem name="Siths" id="examen_menu_siths" parent="examen_menu_root"/>
+        <menuitem name="Listado de Siths" id="examen_list_siths" parent="examen_menu_siths"
+        action="siths_list_action"/>
+
     </data>
 </openerp>
