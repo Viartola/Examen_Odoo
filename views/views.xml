@@ -56,6 +56,7 @@
                             <field name="afinidadOscuridad"/>
                             <field name="numeroSables"/>
                             <field name="colorSable"/>
+                            <field name="jedi_id"/>
                         </group>
                     </sheet>
                 </form>
@@ -73,6 +74,7 @@
                     <field name="numeroSables"/>
                     <field name="afinidadOscuridad"/>
                     <field name="colorSable"/>
+                    <field name="jedi_id"/>
                 </tree>
             </field>
         </record>
@@ -107,6 +109,7 @@
                             <field name="distancia"/>
                             <field name="destruido"/>
                             <field name="destruidoDate"/>
+                            <field name="jedi_id"/>
                         </group>
                     </sheet>
                 </form>
@@ -126,6 +129,52 @@
             </field>
         </record>
 
+         <record model="ir.actions.act_window" id="jedis_list_action">
+            <field name="name">Jedi</field>
+            <field name="res_model">examen.servivo</field>
+            <field name="view_type">form</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.ui.view" id="jedi_form_view">
+            <field name="name">jedi.form</field>
+            <field name="model">examen.servivo</field>
+            <field name="arch" type="xml">
+                <form string="Formulario de planetas">
+                    <sheet>
+                        <group>
+                            <field name="name" />
+                            <field name="colorSable"/>
+                            <field name="soldadosClon"/>
+                            <field name="vistoDate"/>
+                            <field name="midiclorianos"/>
+                            <field name="nivelJedi"/>
+                            <field name="planeta_id"/>
+                            <field name="sith_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="jedis_tree_view">
+            <field name="name">jedi.tree</field>
+            <field name="model">examen.servivo</field>
+            <field name="arch" type="xml">
+                <tree string="Listado de planetas">
+                    <field name="name" />
+                    <field name="colorSable"/>
+                    <field name="soldadosClon"/>
+                    <field name="vistoDate"/>
+                    <field name="midiclorianos"/>
+                    <field name="nivelJedi"/>
+                    <field name="planeta_id"/>
+                </tree>
+            </field>
+        </record>
+
+
         
 
         <menuitem name="Jedis" id="examen_menu_root"/>
@@ -141,6 +190,10 @@
         <menuitem name="Planetas" id="examen_menu_planetas" parent="examen_menu_root"/>
         <menuitem name="Listado de Planetas" id="examen_list_planetas" parent="examen_menu_planetas"
         action="planetas_list_action"/>
+
+        <menuitem name="Jedis" id="examen_menu_jedis" parent="examen_menu_root"/>
+        <menuitem name="Listado de Jedis" id="examen_list_jedis" parent="examen_menu_jedis"
+        action="jedis_list_action"/>
 
     </data>
 </openerp>
