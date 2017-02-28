@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Examen",
+    'name': "examen",
 
-    'summary': """examen"",
+    'summary': """examen""",
     
     'description': """
-        StarWars module to manage jedis:
+        StarWars module to manage jedis
     """,
 
-    'icon': "/codigolimpio/static/img/jedi.png",
+    'icon': "/examen/static/img/jedi.png",
 
 
     'author': "Jaime Lopez Viartola",
