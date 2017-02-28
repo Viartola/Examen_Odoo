@@ -17,6 +17,7 @@
                     <sheet>
                         <group>
                             <field name="name"/>
+                            <field name="planeta_id"/>
                             <field name="servivo_id"/>
                             <field name="sith_id"/>
                         </group>
@@ -25,18 +26,20 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="siths_tree_view">
+
+        <record model="ir.ui.view" id="especies_tree_view">
             <field name="name">especie.tree</field>
             <field name="model">examen.especie</field>
             <field name="arch" type="xml">
-                <tree string="Listado de sith">
+                <tree string="Listado de especies">
                     <field name="name" />
+                    <field name="planeta_id"/>
                 </tree>
             </field>
         </record>
 
          <record model="ir.actions.act_window" id="siths_list_action">
-            <field name="name">Sith</field>
+            <field name="name">Siths</field>
             <field name="res_model">examen.sith</field>
             <field name="view_type">form</field>
             <field name="type">ir.actions.act_window</field>
@@ -67,7 +70,7 @@
             <field name="name">siths.tree</field>
             <field name="model">examen.sith</field>
             <field name="arch" type="xml">
-                <tree string="Listado de sith">
+                <tree string="Listado de siths">
                     <field name="name" />
                     <field name="especie_id"/>
                     <field name="rabia"/>
@@ -80,7 +83,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="planetas_list_action">
-            <field name="name">Planeta</field>
+            <field name="name">Planetas</field>
             <field name="res_model">examen.planeta</field>
             <field name="view_type">form</field>
             <field name="type">ir.actions.act_window</field>
@@ -110,6 +113,7 @@
                             <field name="destruido"/>
                             <field name="destruidoDate"/>
                             <field name="jedi_id"/>
+                            <field name="especie_id"/>
                         </group>
                     </sheet>
                 </form>
@@ -130,7 +134,7 @@
         </record>
 
          <record model="ir.actions.act_window" id="jedis_list_action">
-            <field name="name">Jedi</field>
+            <field name="name">Jedis</field>
             <field name="res_model">examen.servivo</field>
             <field name="view_type">form</field>
             <field name="type">ir.actions.act_window</field>
@@ -141,7 +145,7 @@
             <field name="name">jedi.form</field>
             <field name="model">examen.servivo</field>
             <field name="arch" type="xml">
-                <form string="Formulario de planetas">
+                <form string="Formulario de jedis">
                     <sheet>
                         <group>
                             <field name="name" />
@@ -162,7 +166,7 @@
             <field name="name">jedi.tree</field>
             <field name="model">examen.servivo</field>
             <field name="arch" type="xml">
-                <tree string="Listado de planetas">
+                <tree string="Listado de jedis">
                     <field name="name" />
                     <field name="colorSable"/>
                     <field name="soldadosClon"/>
@@ -180,7 +184,7 @@
         <menuitem name="Jedis" id="examen_menu_root"/>
 
         <menuitem name="Especies" id="examen_menu_especies" parent="examen_menu_root"/>
-        <menuitem name="Listado de especies" id="examen_list_especies" parent="examen_menu_especies"
+        <menuitem name="Listado de Especies" id="examen_list_especies" parent="examen_menu_especies"
         action="especies_list_action"/>
 
         <menuitem name="Siths" id="examen_menu_siths" parent="examen_menu_root"/>

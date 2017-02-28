@@ -5,10 +5,11 @@ from openerp import models, fields, api
 class Especie (models.Model):
 	_name = 'examen.especie'
 
-	name = fields.Char(string="Nombre", required=True)
+	name = fields.Char(string="Especie", required=True)
 
 	servivo_id = fields.One2many('examen.servivo','especie_id', string="Ser Vivo")
 	sith_id = fields.One2many('examen.sith', 'especie_id', string ="Sith")
+	planeta_id = fields.Many2one("examen.planeta", string="Planeta", domain=[('destruido','=',False)])
 
 class Servivo (models.Model):
 	_name = 'examen.servivo'
@@ -25,10 +26,7 @@ class Sith(models.Model):
 	rabia = fields.Integer(string="Rabia", required=True)
 	afinidadOscuridad = fields.Integer(string="Afinidad a la oscuridad", readonly=True, compute='_afinity')
 	numeroSables = fields.Boolean(default=False)
-	colorSable = fields.Selection([
-		('rojo', "Rojo"),
-		('rojoOscuro', "Rojo Oscuro"),
-		])
+	colorSable = fields.Selection([('rojo', "Rojo"),('rojoOscuro', "Rojo Oscuro")],'Color Sable')
 
 	especie_id = fields.Many2one("examen.especie", string="Especie")
 	jedi_id = fields.Many2one("examen.servivo", string="Jedi")
@@ -57,34 +55,22 @@ class Planeta(models.Model):
 
 	name = fields.Char(string="Nombre", required=True)
 	distancia = fields.Float(string="Distancia en Parsecs", required=True)
-	destruido = fields.Boolean(string="Destruido por la estrella de la muerte", default=False, compute='_destruido')
+	destruido = fields.Boolean(string="Destruido por la estrella de la muerte", default=False)
 	destruidoDate = fields.Date(string="Fecha en la que fue destruido")
 	jedi_id = fields.One2many('examen.servivo', 'planeta_id', string ="Jedis")
-
-	@api.depends('destruido')
-	def _destruido(self):
-		if self.midiclorianos < 100:
-			self.nivelJedi = "Padawan"
-		elif (self.midiclorianos >= 100) and (self.midiclorianos < 1000):
-			self.nivelJedi = "Caballero Jedi"
-		elif self.midiclorianos >= 1000:
-			self.nivelJedi = "Consejero Jedi"
+	especie_id = fields.One2many('examen.especie', 'planeta_id', string ="Especie")
 
 
 class Jedi(models.Model):
 	_inherit = 'examen.servivo'
 
-	colorSable = fields.Selection([
-		('azul', "Azul"),
-		('verde', "Verde"),
-		('morado', "Morado"),
-		])
+	colorSable = fields.Selection([('azul', "Azul"),('verde', "Verde"),('morado', "Morado")],'Color Sable') 
 	soldadosClon = fields.Integer(string="Soldados que le persiguen", required=True)
 	vistoDate = fields.Date(string="Fecha en la que fue visto por ultima vez", required=True)
 	midiclorianos = fields.Integer(string="Midiclorianos", required=True)
 	nivelJedi = fields.Char(string='Nivel de Jedi', compute='_nivelJedi', readonly=True)
 	sith_id = fields.One2many('examen.sith', 'jedi_id', string ="Sith")
-	planeta_id = fields.Many2one("examen.planeta", string="Planeta")
+	planeta_id = fields.Many2one("examen.planeta", string="Planeta", domain=[('destruido','=',False)])
 
 	@api.depends('midiclorianos')
 	def _nivelJedi(self):
