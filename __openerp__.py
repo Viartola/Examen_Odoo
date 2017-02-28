@@ -11,7 +11,7 @@
     'icon': "/examen/static/img/jedi.png",
 
 
-    'author': "Jaime Lopez Viartola",
+    'author': "Jaime López Viartola",
     'website': "http://www.starwars.es/",
 
     # Categories can be used to filter modules in modules listing

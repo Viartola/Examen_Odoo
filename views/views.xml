@@ -113,7 +113,7 @@
                             <field name="destruido"/>
                             <field name="destruidoDate"/>
                             <field name="jedi_id"/>
-                            <field name="especie_id"/>
+                            <field name="especie_id" attrs="{'invisible':[('destruido', '=', True)]}"/>
                         </group>
                     </sheet>
                 </form>
