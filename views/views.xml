@@ -1,6 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        
+         <record model="ir.actions.act_window" id="especies_list_action">
+            <field name="name">Especies</field>
+            <field name="res_model">starWars.especie</field>
+            <field name="view_type">form</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.ui.view" id="especie_form_view">
+            <field name="name">especie.form</field>
+            <field name="model">starWars.especie</field>
+            <field name="arch" type="xml">
+                <form string="Formulario de especies">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="servivo_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="seresvivos_list_action">
+            <field name="name">Seres Vivos</field>
+            <field name="res_model">starWars.servivo</field>
+            <field name="view_type">form</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.ui.view" id="servivo_form_view">
+            <field name="name">servivo.form</field>
+            <field name="model">starWars.servivo</field>
+            <field name="arch" type="xml">
+                <form string="Formulario de seres vivos">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="especie_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <menuitem name="Jedis" id="starWars_menu_root"/>
+
+        <menuitem name="Especies" id="starWars_menu_especies" parent="starWars_menu_root"/>
+        <menuitem name="Listado de especies" id="starWars_ist_especies" parent="starWars_menu_especies"
+        action="especies_list_action"/>
+
+        <menuitem name="Seres Vivos" id="starWars_menu_seresvivos" parent="starWars_menu_root"/>
+        <menuitem name="Listado de seres vivos" id="starWars_list_seresvivos" parent="starWars_menu_seresvivos"
+        action="seresvivos_list_action"/>
     </data>
 </openerp>
